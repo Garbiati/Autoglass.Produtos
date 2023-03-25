@@ -23,16 +23,8 @@ namespace AutoglassAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FornecedorDTO>>> ListarFornecedores([FromQuery] FiltroFornecedorDTO filtro)
         { 
-            var fornecedores = await _fornecedorService.GetFornecedorAsync(filtro);
-            var resposta = new
-            {
-                Total = fornecedores.Count(),
-                Pagina = filtro.Pagina,
-                TamanhoPagina = filtro.TamanhoPagina,
-                Fornecedores = fornecedores
-            };
-
-            return Ok(resposta);
+            var fornecedoresResult = await _fornecedorService.GetFornecedorAsync(filtro);
+            return Ok(fornecedoresResult);
         }
 
         [HttpGet("{id}")]

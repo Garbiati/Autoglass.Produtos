@@ -37,7 +37,7 @@ namespace AutoglassAPI.Application.Services
             return _mapper.Map<IEnumerable<ProdutoDTO>>(produtos);
         }
 
-        public async Task<IEnumerable<ProdutoDTO>> GetProdutosAsync(FiltroProdutosDTO filtroProdutosDTO, bool includeFornecedor)
+        public async Task<ProdutoListaDTO> GetProdutosAsync(FiltroProdutosDTO filtroProdutosDTO, bool includeFornecedor)
         {    
 
             if( String.IsNullOrEmpty(filtroProdutosDTO.Situacao))
@@ -66,8 +66,22 @@ namespace AutoglassAPI.Application.Services
             int skip = (filtroProdutosDTO.Pagina.Value -1) * filtroProdutosDTO.TamanhoPagina.Value;
             int take = filtroProdutosDTO.TamanhoPagina.Value;
 
+
+            
+            int total = await _produtoRepository.GetProdutosQueryableCount( predicate);
             var produtos = await _produtoRepository.GetProdutosQueryable(includeFornecedor, predicate, orderBy, skip, take);
-            return _mapper.Map<IEnumerable<ProdutoDTO>>(produtos);
+            
+            var produtosDTO = _mapper.Map<IEnumerable<ProdutoDTO>>(produtos);
+
+            return new ProdutoListaDTO()
+            {
+                Total = total,
+                Exibindo = produtosDTO.Count(),
+                Pagina = filtroProdutosDTO.Pagina.Value,
+                TamanhoPagina = filtroProdutosDTO.TamanhoPagina.Value,
+                Produtos = produtosDTO
+            };
+           
 
         }
 
@@ -92,13 +106,13 @@ namespace AutoglassAPI.Application.Services
             var produto = await _produtoRepository.GetByIdAsync(id);
 
             if(produto == null)
-                throw new Exception("Produto não encontrado"); 
+                throw new ArgumentException("Produto não encontrado"); 
 
             if(produtoUpdateDTO.FornecedorId.HasValue)
                 produto.Fornecedor = await _fornecedorRepository.GetByIdAsync(produtoUpdateDTO.FornecedorId.Value);
 
             if(produto.Fornecedor == null)
-                throw new Exception("Fornecedor não encontrado");
+                throw new ArgumentException("Fornecedor não encontrado");
 
             _mapper.Map(produtoUpdateDTO, produto);
             _produtoValidation.ValidateAndThrow(produto);             

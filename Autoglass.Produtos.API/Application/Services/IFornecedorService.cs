@@ -8,7 +8,7 @@ namespace AutoglassAPI.Application.Services
     {
         Task<FornecedorDTO> GetByIdAsync(int id);
         Task<IEnumerable<FornecedorDTO>> GetAllAsync();
-        Task<IEnumerable<FornecedorDTO>> GetFornecedorAsync(FiltroFornecedorDTO filtroFornecedorDTO);
+        Task<FornecedorListaDTO> GetFornecedorAsync(FiltroFornecedorDTO filtroFornecedorDTO);
         Task<FornecedorDTO> AddAsync(FornecedorCreateDTO fornecedorCreateDTO);
         Task UpdateByIdAsync(int id, FornecedorUpdateDTO fornecedorUpdateDTO);
     }

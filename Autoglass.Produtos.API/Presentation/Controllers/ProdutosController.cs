@@ -20,16 +20,8 @@ namespace AutoglassAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> ListarProdutos([FromQuery] FiltroProdutosDTO filtro)
         { 
-            var produtos = await _produtoService.GetProdutosAsync(filtro, true);
-            var resposta = new
-            {
-                Total = produtos.Count(),
-                Pagina = filtro.Pagina,
-                TamanhoPagina = filtro.TamanhoPagina,
-                Produtos = produtos
-            };
-
-            return Ok(resposta);
+            var produtoResult = await _produtoService.GetProdutosAsync(filtro, true);
+            return Ok(produtoResult);
         }
 
         [HttpGet("{id}")]
@@ -48,8 +40,20 @@ namespace AutoglassAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var createdProduto = await _produtoService.AddAsync(produtoCreateDTO);
-            return CreatedAtAction(nameof(GetById), new { id = createdProduto.Codigo }, createdProduto);
+            try
+            {
+                var createdProduto = await _produtoService.AddAsync(produtoCreateDTO);
+                return CreatedAtAction(nameof(GetById), new { id = createdProduto.Codigo }, createdProduto);
+            }
+
+            catch (System.Exception ex)
+            {
+                
+                return BadRequest(ex.Message);
+            }
+
+
+
         }
 
         
@@ -62,6 +66,14 @@ namespace AutoglassAPI.Controllers
             {
                 await _produtoService.UpdateByIdAsync(id, produtoUpdateDTO);
                 return Ok();
+            }
+            catch(ArgumentException aex )
+            {
+                return BadRequest(aex.Message);
+            }
+            catch(FluentValidation.ValidationException vex )
+            {
+                    return BadRequest(vex.Message);
             }
             catch (Exception ex)
             {

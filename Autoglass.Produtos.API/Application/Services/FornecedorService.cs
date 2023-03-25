@@ -31,7 +31,7 @@ namespace AutoglassAPI.Application.Services
             return _mapper.Map<IEnumerable<FornecedorDTO>>(fornecedores);
         }
 
-        public async Task<IEnumerable<FornecedorDTO>> GetFornecedorAsync(FiltroFornecedorDTO filtroFornecedorDTO)
+        public async Task<FornecedorListaDTO> GetFornecedorAsync(FiltroFornecedorDTO filtroFornecedorDTO)
         {            
             if( !filtroFornecedorDTO.Pagina.HasValue)
                 filtroFornecedorDTO.Pagina = 1;
@@ -52,9 +52,21 @@ namespace AutoglassAPI.Application.Services
             int skip = (filtroFornecedorDTO.Pagina.Value -1) * filtroFornecedorDTO.TamanhoPagina.Value;
             int take = filtroFornecedorDTO.TamanhoPagina.Value;
 
-            var produtos = await _fornecedorRepository.GetFornecedorQueryable(predicate, orderBy, skip, take);
 
-            return _mapper.Map<IEnumerable<FornecedorDTO>>(produtos);
+            int total = await _fornecedorRepository.GetFornecedorQueryableCount(predicate);    
+            var fornecedores = await _fornecedorRepository.GetFornecedorQueryable(predicate, orderBy, skip, take);
+
+            var fornecedoresDTO = _mapper.Map<IEnumerable<FornecedorDTO>>(fornecedores);
+
+
+            return new FornecedorListaDTO()
+            {
+                Total = total,
+                Exibindo = fornecedoresDTO.Count(),
+                Pagina = filtroFornecedorDTO.Pagina.Value,
+                TamanhoPagina = filtroFornecedorDTO.TamanhoPagina.Value,
+                Fornecedores = fornecedoresDTO
+            };
 
         }
 

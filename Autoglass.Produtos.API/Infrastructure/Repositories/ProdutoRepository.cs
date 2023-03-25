@@ -21,6 +21,8 @@ namespace AutoglassAPI.Infrastructure.Repositories
             return await _context.Produtos.Include(p => p.Fornecedor).ToListAsync();
         }
 
+
+
         public  Task<List<Produto>> GetProdutosQueryable(bool includeFornecedor = true, Expression<Func<Produto, bool>> predicate = null, Func<IQueryable<Produto>, IOrderedQueryable<Produto>> orderBy = null, int? skip = null, int? take = null)
         {
             var query = _context.Produtos.AsQueryable();
@@ -52,6 +54,15 @@ namespace AutoglassAPI.Infrastructure.Repositories
 
             return query.ToListAsync();
         } 
+
+        public  Task<int> GetProdutosQueryableCount(Expression<Func<Produto, bool>> predicate)
+        {
+            var query = _context.Produtos.AsQueryable();
+
+            query = query.Where(predicate);
+
+           return query.CountAsync();
+        }
 
         public async Task<Produto> GetByIdAsync(int id)
         {

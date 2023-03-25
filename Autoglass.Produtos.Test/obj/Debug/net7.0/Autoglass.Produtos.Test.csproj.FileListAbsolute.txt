@@ -1,10 +1,4 @@
 E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\CoverletSourceRootsMapping
-E:\Autoglass\Autoglass.Produtos.Test\obj\Debug\net7.0\Autoglass.Produtos.Test.csproj.AssemblyReference.cache
-E:\Autoglass\Autoglass.Produtos.Test\obj\Debug\net7.0\MvcTestingAppManifest.json
-E:\Autoglass\Autoglass.Produtos.Test\obj\Debug\net7.0\Autoglass.Produtos.Test.GeneratedMSBuildEditorConfig.editorconfig
-E:\Autoglass\Autoglass.Produtos.Test\obj\Debug\net7.0\Autoglass.Produtos.Test.AssemblyInfoInputs.cache
-E:\Autoglass\Autoglass.Produtos.Test\obj\Debug\net7.0\Autoglass.Produtos.Test.AssemblyInfo.cs
-E:\Autoglass\Autoglass.Produtos.Test\obj\Debug\net7.0\Autoglass.Produtos.Test.csproj.CoreCompileInputs.cache
 E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\testhost.dll
 E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\Autoglass.Produtos.API.deps.json
 E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\Autoglass.Produtos.API.runtimeconfig.json
@@ -320,6 +314,7 @@ E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\AutoMapper.dll
 E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\Azure.Core.dll
 E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\Azure.Identity.dll
+E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\Castle.Core.dll
 E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\FluentValidation.dll
 E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
 E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
@@ -355,6 +350,7 @@ E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\Microsoft.TestPlatform.Cro
 E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\Microsoft.TestPlatform.Utilities.dll
 E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\Microsoft.VisualStudio.TestPlatform.Common.dll
 E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
+E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\Moq.dll
 E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\Newtonsoft.Json.dll
 E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\NuGet.Frameworks.dll
 E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
@@ -451,11 +447,15 @@ E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\runtimes\win\lib\netstanda
 E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\Autoglass.Produtos.API.dll
 E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\Autoglass.Produtos.API.pdb
+E:\Autoglass\Autoglass.Produtos.Test\obj\Debug\net7.0\Autoglass.Produtos.Test.csproj.AssemblyReference.cache
+E:\Autoglass\Autoglass.Produtos.Test\obj\Debug\net7.0\MvcTestingAppManifest.json
+E:\Autoglass\Autoglass.Produtos.Test\obj\Debug\net7.0\Autoglass.Produtos.Test.GeneratedMSBuildEditorConfig.editorconfig
+E:\Autoglass\Autoglass.Produtos.Test\obj\Debug\net7.0\Autoglass.Produtos.Test.AssemblyInfoInputs.cache
+E:\Autoglass\Autoglass.Produtos.Test\obj\Debug\net7.0\Autoglass.Produtos.Test.AssemblyInfo.cs
+E:\Autoglass\Autoglass.Produtos.Test\obj\Debug\net7.0\Autoglass.Produtos.Test.csproj.CoreCompileInputs.cache
 E:\Autoglass\Autoglass.Produtos.Test\obj\Debug\net7.0\Autoglass.Produtos.Test.csproj.CopyComplete
 E:\Autoglass\Autoglass.Produtos.Test\obj\Debug\net7.0\Autoglass.Produtos.Test.dll
 E:\Autoglass\Autoglass.Produtos.Test\obj\Debug\net7.0\refint\Autoglass.Produtos.Test.dll
 E:\Autoglass\Autoglass.Produtos.Test\obj\Debug\net7.0\Autoglass.Produtos.Test.pdb
 E:\Autoglass\Autoglass.Produtos.Test\obj\Debug\net7.0\Autoglass.Produtos.Test.genruntimeconfig.cache
 E:\Autoglass\Autoglass.Produtos.Test\obj\Debug\net7.0\ref\Autoglass.Produtos.Test.dll
-E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\Castle.Core.dll
-E:\Autoglass\Autoglass.Produtos.Test\bin\Debug\net7.0\Moq.dll

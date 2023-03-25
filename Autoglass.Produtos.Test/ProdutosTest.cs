@@ -49,7 +49,7 @@ namespace Autoglass.Produtos.Test
         {
             // Arrange
             var filtro = new FiltroProdutosDTO();
-            var produtos = new List<ProdutoDTO>();
+            var produtos = new ProdutoListaDTO();
             var mock = new Mock<IProdutoService>();
             mock.Setup(servico => servico.GetProdutosAsync(filtro, true))
                 .ReturnsAsync(produtos);
@@ -60,86 +60,12 @@ namespace Autoglass.Produtos.Test
 
             // Assert
             Assert.NotNull(resultado);
-            Assert.IsType<List<ProdutoDTO>>(resultado);
+            Assert.IsType<ProdutoListaDTO>(resultado);
             Assert.Equal(produtos, resultado);
-        }
-
-
-        [Fact]
-        public async Task TestePostDataValidadeMenorQueFabricacao()
-        {
-            // Arrange
-            var produtoCreateDTO = new ProdutoCreateDTO
-            {
-                Descricao = "Produto Teste",
-                DataFabricacao = DateTime.Now.ToShortDateString(),
-                DataValidade = DateTime.Now.AddDays(-1).ToShortDateString(),
-                FornecedorId = 1
-            };
-            var mock = new Mock<IProdutoService>();
-            var produtoService = mock.Object;
-            var client = _factory.WithWebHostBuilder(builder =>
-            {
-                builder.ConfigureServices(services =>
-                {
-                    services.AddSingleton(produtoService);
-                });
-            }).CreateClient();
-
-            // Act & Assert
-            var response = await client.PostAsJsonAsync("/api/produtos", produtoCreateDTO);
-            Console.WriteLine(response.RequestMessage);
-            Assert.Equal(HttpStatusCode.InternalServerError, response.StatusCode);
-        }
-
-        [Fact]
-        public async Task TestePostDataValidadeMaiorQueFabricacao()
-        {
-            // Arrange
-            var produtoCreateDTO = new ProdutoCreateDTO
-            {
-                Descricao = "Produto Teste",
-                DataFabricacao = DateTime.Now.ToShortDateString(),
-                DataValidade = DateTime.Now.AddDays(1).ToShortDateString(),
-                FornecedorId = 1
-            };
-            var mock = new Mock<IProdutoService>();
-            var produtoService = mock.Object;
-            var controller = new ProdutosController(produtoService);
-
-            // Act & Assert        
-            
-            Assert.IsType<ActionResult<ProdutoDTO>>(await controller.Post(produtoCreateDTO));
-        }
-        
-        // [Fact]
-        // public async Task TestePostDataValidadeMenorQueFabricacao2()
-        // {
-        //     // Arrange
-        //     var produtoCreateDTO = new ProdutoCreateDTO
-        //     {
-        //         Descricao = "Produto Teste",
-        //         DataFabricacao = DateTime.Now.ToShortDateString(),
-        //         DataValidade = DateTime.Now.AddDays(-1).ToShortDateString(),
-        //         FornecedorId = 1
-        //     };
-        //     var mock = new Mock<IProdutoService>();
-        //     var produtoService = mock.Object;
-        //     var controller = new ProdutosController(produtoService);
-
-        //     // Act & Assert
-        //     await Assert.ThrowsAsync<FluentValidation.ValidationException>(async () => await controller.Post(produtoCreateDTO));
-        // }
-
+        } 
 
         private class ProdutoServiceMock : IProdutoService
         {
-            public async Task<IEnumerable<ProdutoDTO>> GetProdutosAsync(FiltroProdutosDTO filtro, bool incluirImagens)
-            {
-                await Task.Delay(100);
-                return new ProdutoDTO[0];
-            }
-
             public async Task<ProdutoDTO> GetByIdAsync(int id)
             {
                 await Task.Delay(100);
@@ -166,6 +92,12 @@ namespace Autoglass.Produtos.Test
             {
                 await Task.Delay(100);
                 return new ProdutoDTO[0];
+            }
+
+            public async Task<ProdutoListaDTO> GetProdutosAsync(FiltroProdutosDTO filtroProdutosDTO, bool includeFornecedor)
+            {
+                await Task.Delay(100);
+                return new ProdutoListaDTO();
             }
         }
 

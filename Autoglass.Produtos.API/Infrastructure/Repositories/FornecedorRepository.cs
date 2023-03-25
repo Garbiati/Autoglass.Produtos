@@ -63,6 +63,13 @@ namespace AutoglassAPI.Infrastructure.Repositories
             return query.ToListAsync();
         } 
 
+       public  Task<int> GetFornecedorQueryableCount( Expression<Func<Fornecedor, bool>> predicate)
+        {
+            var query = _context.Fornecedores.AsQueryable();
+            query = query.Where(predicate);
+           return query.CountAsync();
+        }
+
 
         public async Task UpdateAsync(Fornecedor fornecedor)
         {
