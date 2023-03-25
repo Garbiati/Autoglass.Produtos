@@ -56,17 +56,33 @@ namespace AutoglassAPI.Controllers
 
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] ProdutoUpdateDTO produtoUpdateDTO)
-        {           
-            await _produtoService.UpdateAsync(produtoUpdateDTO);
-            return NoContent();
+        public async Task<IActionResult> UpdateById(int id, [FromBody] ProdutoUpdateDTO produtoUpdateDTO)
+        {   
+            try
+            {
+                await _produtoService.UpdateByIdAsync(id, produtoUpdateDTO);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }           
+            
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _produtoService.DeleteAsync(id);
-            return NoContent();
+            try
+            {
+                await _produtoService.DeleteAsync(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            } 
+            
         }
     }
 }

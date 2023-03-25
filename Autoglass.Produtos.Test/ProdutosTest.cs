@@ -152,7 +152,7 @@ namespace Autoglass.Produtos.Test
                 return new ProdutoDTO();
             }
 
-            public async Task UpdateAsync(ProdutoUpdateDTO produtoUpdateDTO)
+            public async Task UpdateByIdAsync(int id, ProdutoUpdateDTO produtoUpdateDTO)
             {
                 await Task.Delay(100);
             }

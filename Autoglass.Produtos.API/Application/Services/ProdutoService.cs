@@ -86,15 +86,23 @@ namespace AutoglassAPI.Application.Services
             return _mapper.Map<ProdutoDTO>(produto);
         }
 
-        public async Task UpdateAsync(ProdutoUpdateDTO produtoUpdateDTO)
-        {
-            var produto = _mapper.Map<Produto>(produtoUpdateDTO);
-            _produtoValidation.ValidateAndThrow(produto);
+        public async Task UpdateByIdAsync(int id, ProdutoUpdateDTO produtoUpdateDTO)
+        {      
 
-            if( !produtoUpdateDTO.FornecedorId.HasValue)
-                throw new Exception("Por favor, informe o FornecedorID.");
+            var produto = await _produtoRepository.GetByIdAsync(id);
+
+            if(produto == null)
+                throw new Exception("Produto não encontrado"); 
+
+            if(produtoUpdateDTO.FornecedorId.HasValue)
+                produto.Fornecedor = await _fornecedorRepository.GetByIdAsync(produtoUpdateDTO.FornecedorId.Value);
+
+            if(produto.Fornecedor == null)
+                throw new Exception("Fornecedor não encontrado");
+
+            _mapper.Map(produtoUpdateDTO, produto);
+            _produtoValidation.ValidateAndThrow(produto);             
             
-            produto.Fornecedor = await _fornecedorRepository.GetByIdAsync(produtoUpdateDTO.FornecedorId.Value);
             if(produto.Fornecedor == null)            
                 throw new Exception($"Nenhum fornecedor com o Id {produtoUpdateDTO.FornecedorId} encontrado na base de dados." );
 
